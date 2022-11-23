@@ -18,3 +18,15 @@ console.log(someObject);
 console.log(someObject.someFunction());
 
 console.log(someObject.notExistingProperty); // undefined
+
+const objectA = { a: 1 };
+const objectB = { a: 1 };
+const objectC = objectA;
+console.log({
+  objectA,
+  objectB,
+  objectC,
+  "A=B": objectA === objectB,
+  "A=C": objectA === objectC,
+  "B=C": objectB === objectC,
+});

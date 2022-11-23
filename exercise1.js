@@ -21,7 +21,6 @@ function login(login, password) {
     return false;
   }
 
-  // return user;
   const amountOfUsers = Object.keys(users).length;
   return {
     role: user.role,
@@ -41,18 +40,6 @@ userData.displayAvatar();
 const userData2 = login("admin", "123");
 
 console.log({ userData, userData2, same: userData === userData2 }); //? 2 for false
-
-const objectA = { a: 1 };
-const objectB = { a: 1 };
-const objectC = objectA;
-console.log({
-  objectA,
-  objectB,
-  objectC,
-  "A=B": objectA === objectB,
-  "A=C": objectA === objectC,
-  "B=C": objectB === objectC,
-});
 
 // console.log("2", login("admin", "somethingDifferent")); //? 0 for false
 
