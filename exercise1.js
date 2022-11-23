@@ -1,34 +1,49 @@
-function login(login, password) {
+const usersModule = (function () {
   const users = {
-    user1: {
-      pass: "123",
-    },
     admin: {
       pass: "123",
       name: "adf",
-      surname: "asedf",
+      surname: "asdf",
       role: "admin",
     },
   };
 
-  const user = users[login];
+  function login(login, password) {
+    const user = users[login];
 
-  if (!user) {
-    return false;
+    if (!user) {
+      return false;
+    }
+
+    if (user.pass !== password) {
+      return false;
+    }
+
+    return {
+      role: user.role,
+      name: user.name,
+      surname: user.surname,
+    };
   }
 
-  if (user.pass !== password) {
-    return false;
+  function register(userData) {
+    // validations
+    // check if user is not already there
+
+    users[userData.login] = {
+      pass: userData.pass,
+      name: userData.name,
+      surname: userData.surname,
+      role: "user",
+    };
   }
+  return { login, register };
+})(); // IIFE - immediately invoke function expression
 
-  return {
-    role: user.role,
-    name: user.name,
-    surname: user.surname,
-  };
-}
+const register = usersModule.register;
+const login = usersModule.login;
 
-const userData = login("admin", "123");
+// const userData = login("admin", "123");
 // pseudocode:
 register({
   name: "Mateusz",
@@ -37,4 +52,10 @@ register({
   pass: "test",
 });
 
-login("mat", "test"); // -> {name: 'Mateusz', surname: 'Lewandowski', role: 'user'}
+console.log(login("mat", "test")); // -> {name: 'Mateusz', surname: 'Lewandowski', role: 'user'}
+
+// const password = "test";
+// const object = {
+//   pass: "asdfsd",
+//   password,
+// }; //?
