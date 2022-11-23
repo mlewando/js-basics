@@ -1,0 +1,31 @@
+<html>
+  <body>
+    Login: <input type="text" id="login" /></br>
+    Password:  <input type="text" id="password" /></br>
+    <button id="loginButton">Login</button>
+
+    <div id="greetings"></div>
+    <script src="./exercise1.js"></script>
+    <script>
+        document.getElementById('loginButton').addEventListener('click', () => {
+            const userLogin = document.getElementById('login').value
+            const userPassword = document.getElementById('password').value
+
+            console.log('we\'re about to login', userLogin)
+
+            const user = login(userLogin, userPassword)
+            if (!user) {
+                console.log('I don\'t know you')
+            } else {
+
+                if (typeof user === 'string') {
+                    document.getElementById('greetings').innerText = 'Hello admin'
+                } else {
+                    document.getElementById('greetings').innerText = 'Hello user'
+                }
+                
+            }
+        })
+    </script>
+  </body>
+</html>

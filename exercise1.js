@@ -5,26 +5,27 @@ function login(login, password) {
     },
     admin: {
       pass: "123",
+      name: "adf",
+      surname: "asedf",
+      role: "admin",
     },
   };
+  const user = users[login];
 
-  if (!users[login]) {
-    console.log("not found");
+  if (!user) {
     return false;
   }
 
-  if (users[login].pass !== password) {
-    console.log("wrong pass");
+  if (user.pass !== password) {
     return false;
   }
 
-  return true;
+  return {
+    role: user.role,
+    name: user.name,
+    surname: user.surname,
+  };
 }
 
-login("user1", "123") === true; //?
-// login("user1", "incorrectPassword") === false; //?
-// login("someUserThatDoesNotExists", "anyPassword") === false; //?
-
-const m = new Map();
-m.set("login", "value");
-m; //?
+// console.log("user1", login("user1", "123")); // ->
+// console.log("admin", login("admin", "123")); // -> some possibility to check if this user is an admin, his/her name and surname
