@@ -150,3 +150,13 @@
   Number.MAX_SAFE_INTEGER; //?
   Number.isSafeInteger(Number.MAX_VALUE); //?
 })();
+
+(() => {
+  const s1 = new String("s");
+  const s2 = String("s");
+  const s3 = "s";
+
+  s1 === s2; //?
+  s1 === s3; //?
+  s2 === s3; //?
+})();
