@@ -19,11 +19,34 @@ const usersModule = (function UsersModule() {
       return false;
     }
 
-    return {
+    const publicUserData = {
       role: user.role,
       name: user.name,
       surname: user.surname,
+      // solution A
+      changeRole: function (userLogin, newRole) {
+        if (user.role !== "admin") {
+          console.error("you should not do it");
+          return;
+        }
+        if (users[userLogin]) {
+          users[userLogin].role = newRole;
+        } else {
+          console.warn("such user does not exists");
+        }
+      },
     };
+
+    // solution B
+    if (user.role === "admin") {
+      publicUserData.changeRole = function (userLogin, newRole) {
+        if (users[userLogin]) {
+          users[userLogin].role = newRole;
+        }
+      };
+    }
+
+    return publicUserData;
   }
 
   function register(userData) {
@@ -37,7 +60,8 @@ const usersModule = (function UsersModule() {
       role: "user",
     };
   }
-  // admin can change the role of users
+  // -- admin can change the role of users - what's the pros and cons of both solutions (A and B)
+
   // it cannot be possible to have zero admins
   // user can change it's own password
   // admin can remove users*
@@ -54,11 +78,15 @@ register({
   login: "mat",
   pass: "test",
 });
+register({
+  name: "Some",
+  surname: "User",
+  login: "user",
+  pass: "test",
+});
 
-console.log(login("mat", "test")); // -> {name: 'Mateusz', surname: 'Lewandowski', role: 'user'}
+const admin = login("admin", "123");
+admin.changeRole("mat", "admin");
 
-// const password = "test";
-// const object = {
-//   pass: "asdfsd",
-//   password,
-// }; //?
+console.log(login("mat", "test"));
+console.log(login("user", "test"));
