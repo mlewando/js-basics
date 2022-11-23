@@ -62,7 +62,7 @@ const usersModule = (function UsersModule() {
   }
   // -- admin can change the role of users - what's the pros and cons of both solutions (A and B)
 
-  // it cannot be possible to have zero admins
+  // it cannot be possible to have zero admins (probably you should use Object.keys or Object.values and a for loop)
   // user can change it's own password
   // admin can remove users*
 
