@@ -1,9 +1,9 @@
-const usersModule = (function () {
+const usersModule = (function UsersModule() {
   const users = {
     admin: {
       pass: "123",
-      name: "adf",
-      surname: "asdf",
+      name: "Admin",
+      surname: "JS",
       role: "admin",
     },
   };
@@ -27,7 +27,7 @@ const usersModule = (function () {
   }
 
   function register(userData) {
-    // validations
+    // validations of input
     // check if user is not already there
 
     users[userData.login] = {
@@ -43,8 +43,6 @@ const usersModule = (function () {
 const register = usersModule.register;
 const login = usersModule.login;
 
-// const userData = login("admin", "123");
-// pseudocode:
 register({
   name: "Mateusz",
   surname: "Lewandowski",
