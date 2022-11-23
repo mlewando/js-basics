@@ -37,6 +37,11 @@ const usersModule = (function UsersModule() {
       role: "user",
     };
   }
+  // admin can change the role of users
+  // it cannot be possible to have zero admins
+  // user can change it's own password
+  // admin can remove users*
+
   return { login, register };
 })(); // IIFE - immediately invoke function expression
 
