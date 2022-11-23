@@ -1,10 +1,10 @@
-const usersModule = (function UsersModule() {
+const { login, register } = (function UsersModule() {
   const users = {
     admin: {
-      pass: "123",
       name: "Admin",
       surname: "JS",
       role: "admin",
+      pass: "123",
     },
   };
 
@@ -19,25 +19,8 @@ const usersModule = (function UsersModule() {
       return false;
     }
 
-    const publicUserData = {
-      role: user.role,
-      name: user.name,
-      surname: user.surname,
-      // solution A
-      changeRole: function (userLogin, newRole) {
-        if (user.role !== "admin") {
-          console.error("you should not do it");
-          return;
-        }
-        if (users[userLogin]) {
-          users[userLogin].role = newRole;
-        } else {
-          console.warn("such user does not exists");
-        }
-      },
-    };
+    const { pass, ...publicUserData } = user;
 
-    // solution B
     if (user.role === "admin") {
       publicUserData.changeRole = function (userLogin, newRole) {
         if (users[userLogin]) {
@@ -68,9 +51,6 @@ const usersModule = (function UsersModule() {
 
   return { login, register };
 })(); // IIFE - immediately invoke function expression
-
-const register = usersModule.register;
-const login = usersModule.login;
 
 register({
   name: "Mateusz",
