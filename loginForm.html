@@ -8,10 +8,14 @@
     <script src="./exercise1.js"></script>
     <script>
         document.getElementById('loginButton').addEventListener('click', () => {
+            var userPassword
+            console.log(userPassword) // -> this is ok
+            console.log(userLogin) // -> error
             const userLogin = document.getElementById('login').value
-            const userPassword = document.getElementById('password').value
+            userPassword = document.getElementById('password').value
 
             console.log('we\'re about to login', userLogin)
+            console.log(users)
 
             const user = login(userLogin, userPassword)
             if (!user) {
@@ -23,7 +27,7 @@
                 } else {
                     document.getElementById('greetings').innerText = 'Hello user'
                 }
-                
+
             }
         })
     </script>
