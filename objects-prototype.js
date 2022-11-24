@@ -28,17 +28,19 @@ delete object1.a;
 
 function Func(arg1) {
   console.log("do stuff", arg1);
+  this.someValue = `my argument: ${arg1}`;
 }
 Func.prototype.hello = function () {
-  return "hello";
+  return `hello ${this.someValue}`;
 };
 
 const numberObject = new Number(45);
 
 /*
 1. creating new empty object: {}
-2. invoking function func
+2. invoking function func with this pointing to the newly created object
 3. assigning func.prototype as a prototype of the new object
+4. return the newly created object
 */
 const someObject = new Func(23);
 const otherObject = new Func();
