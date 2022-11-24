@@ -34,8 +34,6 @@ Func.prototype.hello = function () {
   return `hello ${this.someValue}`;
 };
 
-const numberObject = new Number(45);
-
 /*
 1. creating new empty object: {}
 2. invoking function func with this pointing to the newly created object
