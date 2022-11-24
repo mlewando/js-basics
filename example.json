@@ -1,0 +1,7 @@
+{
+  "property": "value",
+  "number": 12,
+  "otherObject": {
+    "test": "2334"
+  }
+}
