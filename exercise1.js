@@ -6,6 +6,12 @@ const { login, register } = (function UsersModule() {
       role: "admin",
       pass: "123",
     },
+    user: {
+      name: "user",
+      surname: "normal",
+      role: "user",
+      pass: "test",
+    },
   };
 
   function login(login, password) {
@@ -48,6 +54,10 @@ const { login, register } = (function UsersModule() {
   // it cannot be possible to have zero admins (probably you should use Object.keys or Object.values and a for loop)
   // user can change it's own password
   // admin can remove users*
+  // replace the simple objcets in users map with instances of a classes
+  // - admin class should extend user
+  // - don't use class keyword (functions and prototypes are allowed)
+  // - eg. users[login].pass -> users[login].getPassword() (so use methods to access data)
 
   return { login, register };
 })(); // IIFE - immediately invoke function expression
