@@ -5,15 +5,15 @@ const someFunctionWithArgs = function (
   fourthArgument
 ) {
   const test = arguments[4]; //?
-  someObject === secondArgument; // -> true
+  object1 === secondArgument; // -> true
   return "someValue";
 };
 
 const test = 4;
-const someObject = { a: 1 }; // { a: 1 } - object in the memory at address 1 (ref1)
+const object1 = { a: 1 }; // { a: 1 } - object in the memory at address 1 (ref1)
 
 var v = 5;
-someFunction(test, someObject, 34, { a: 2 }, "test"); //?
+someFunction(test, object1, 34, { a: 2 }, "test"); //?
 // someFunctionWithArgs(test, someObject, 34, { a: 2 }, "test"); //?
 
 // const someOtherFunction = function () {
@@ -26,7 +26,7 @@ function someFunction() {
   var thirdArgument = arguments[2]; //?
   console.log(firstArgument + fourthArgument);
 
-  someObject === secondArgument; // -> true
+  object1 === secondArgument; // -> true
   return "someValue";
 }
 

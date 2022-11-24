@@ -1,4 +1,4 @@
-const someObject = {
+const object1 = {
   test: 4,
   otherValue: "test",
   otherObject: {
@@ -9,15 +9,15 @@ const someObject = {
   },
 };
 
-console.log(someObject.test); // 4
+console.log(object1.test); // 4
 const propertyName = "test";
-console.log(someObject[propertyName]); // 4
+console.log(object1[propertyName]); // 4
 
-someObject.newValue = "new";
-console.log(someObject);
-console.log(someObject.someFunction());
+object1.newValue = "new";
+console.log(object1);
+console.log(object1.someFunction());
 
-console.log(someObject.notExistingProperty); // undefined
+console.log(object1.notExistingProperty); // undefined
 
 const objectA = { a: 1 };
 const objectB = { a: 1 };
