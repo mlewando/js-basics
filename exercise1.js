@@ -19,6 +19,8 @@ class PublicUserData {
   }
 }
 
+class AdminPublicData {} //implement this
+
 // function PublicUserData(user) {
 //   this.login = user.login;
 // }
@@ -102,8 +104,8 @@ register({
   pass: "test",
 });
 
-// const admin = login("admin", "123");
-// admin.changeRole("mat", "admin");
+const admin = login("admin", "123");
+admin.changeRole("mat", "admin"); // I want this back
 
 const loggedInUser = login("mat", "test");
 
