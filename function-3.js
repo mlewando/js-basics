@@ -53,11 +53,11 @@ class User {
       }
     );
   }
-  isSaved() {
+  get saved() {
     return this.#saved;
   }
 }
 
 const user = new User("Mat");
 user.saveUserToDatabaseWitArrowFunction();
-user.isSaved(); //?
+user.saved; //?
