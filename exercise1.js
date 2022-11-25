@@ -1,3 +1,23 @@
+class PublicUserData {
+  name;
+  #user;
+
+  constructor(user) {
+    this.name = user.name;
+    this.#user = user;
+  }
+
+  changePassword(oldPassword, newPassword) {
+    if (this.#user.pass === oldPassword) {
+      this.#user.pass = newPassword;
+    }
+  }
+}
+
+// function PublicUserData(user) {
+//   this.login = user.login;
+// }
+
 const { login, register } = (function UsersModule() {
   const users = {
     admin: {
@@ -25,17 +45,19 @@ const { login, register } = (function UsersModule() {
       return false;
     }
 
-    const { pass, ...publicUserData } = user;
+    const publicUserData2 = new PublicUserData(user);
 
-    if (user.role === "admin") {
-      publicUserData.changeRole = function (userLogin, newRole) {
-        if (users[userLogin]) {
-          users[userLogin].role = newRole;
-        }
-      };
-    }
+    // const { pass, ...publicUserData } = user;
 
-    return publicUserData;
+    // if (user.role === "admin") {
+    //   publicUserData.changeRole = function (userLogin, newRole) {
+    //     if (users[userLogin]) {
+    //       users[userLogin].role = newRole;
+    //     }
+    //   };
+    // }
+
+    return publicUserData2;
   }
 
   function register(userData) {
@@ -75,8 +97,17 @@ register({
   pass: "test",
 });
 
-const admin = login("admin", "123");
-admin.changeRole("mat", "admin");
+// const admin = login("admin", "123");
+// admin.changeRole("mat", "admin");
+
+const loggedInUser = login("mat", "test");
+
+loggedInUser.user; //?
+loggedInUser.name = "Jan";
+
+console.log(loggedInUser); // Jan
+// loggedInUser.user.role = "admin";
+// loggedInUser.user; //?
 
 console.log(login("mat", "test"));
-console.log(login("user", "test"));
+// console.log(login("user", "test"));
