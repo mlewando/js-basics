@@ -21,10 +21,6 @@ class PublicUserData {
 
 class AdminPublicData {} //implement this
 
-// function PublicUserData(user) {
-//   this.login = user.login;
-// }
-
 const { login, register } = (function UsersModule() {
   const users = {
     admin: {
@@ -52,7 +48,7 @@ const { login, register } = (function UsersModule() {
       return false;
     }
 
-    const publicUserData2 = new PublicUserData(user);
+    const publicUserData = new PublicUserData(user);
 
     // const { pass, ...publicUserData } = user;
 
@@ -64,7 +60,13 @@ const { login, register } = (function UsersModule() {
     //   };
     // }
 
-    return publicUserData2;
+    // publicUserData.changePassword = function (oldPassword, newPassword) {
+    //   if (users[login].pass === oldPassword) {
+    //     users[login].pass = newPassword;
+    //   }
+    // };
+
+    return publicUserData;
   }
 
   function register(userData) {
@@ -108,6 +110,7 @@ const admin = login("admin", "123");
 admin.changeRole("mat", "admin"); // I want this back
 
 const loggedInUser = login("mat", "test");
+loggedInUser.changePassword("test", "test2");
 
 loggedInUser.user; //?
 loggedInUser.name = "Jan";
