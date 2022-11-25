@@ -5,12 +5,17 @@ class PublicUserData {
   constructor(user) {
     this.name = user.name;
     this.#user = user;
+    this.#privateMethod();
   }
 
   changePassword(oldPassword, newPassword) {
     if (this.#user.pass === oldPassword) {
       this.#user.pass = newPassword;
     }
+  }
+
+  #privateMethod() {
+    console.log("Private method");
   }
 }
 
