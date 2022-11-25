@@ -14,10 +14,17 @@ class PublicUserData {
     }
   }
 
+  logSomething() {
+    console.log("something");
+  }
+
   #privateMethod() {
     console.log("Private method");
   }
 }
+
+const someUser = new PublicUserData({ name: "Mat", pass: "123" });
+Object.getPrototypeOf(someUser).logSomething; // this is in the prototype
 
 class AdminPublicData {} //implement this
 
@@ -48,23 +55,32 @@ const { login, register } = (function UsersModule() {
       return false;
     }
 
-    const publicUserData = new PublicUserData(user);
+    // const publicUserData = new PublicUserData(user);
 
     // const { pass, ...publicUserData } = user;
+    const publicUserData = {
+      name: user.name,
+      surname: user.surname,
+      role: user.role,
+      logSomething() {
+        console.log("something");
+      },
+      changePassword(oldPassword, newPassword) {
+        if (users[login].pass === oldPassword) {
+          users[login].pass = newPassword;
+        }
+      },
+    };
+    publicUserData.logSomething; // this is in the object
+    Object.getPrototypeOf(publicUserData).logSomething; // this is undefined
 
-    // if (user.role === "admin") {
-    //   publicUserData.changeRole = function (userLogin, newRole) {
-    //     if (users[userLogin]) {
-    //       users[userLogin].role = newRole;
-    //     }
-    //   };
-    // }
-
-    // publicUserData.changePassword = function (oldPassword, newPassword) {
-    //   if (users[login].pass === oldPassword) {
-    //     users[login].pass = newPassword;
-    //   }
-    // };
+    if (user.role === "admin") {
+      publicUserData.changeRole = function (userLogin, newRole) {
+        if (users[userLogin]) {
+          users[userLogin].role = newRole;
+        }
+      };
+    }
 
     return publicUserData;
   }

@@ -24,10 +24,11 @@ function saveDataToDatabase(data, done) {
 }
 
 class User {
-  #saved;
+  #saved = false;
+  loginsCount = 0;
+
   constructor(name) {
     this.name = name;
-    this.#saved = false;
   }
 
   saveUserToDatabase() {
